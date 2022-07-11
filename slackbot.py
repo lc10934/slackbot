@@ -6,22 +6,23 @@ import ssl
 import sys
 import certifi
 
-DATASET_DIR = '/Users/logancheng/Downloads/RESULTS' #'/data2/pypi'
-PREVIOUS_NUMBER_OF_FILES = '/home/lsc210003/readme.txt'
+DATASET_DIR = '/data2/pypi'
+PREVIOUS_NUMBER_OF_FILES = '/home/lsc210003/numfiles.txt'
 try:
-    with open('/Users/logancheng/Downloads/readme.txt') as f:
+    with open(PREVIOUS_NUMBER_OF_FILES) as f:
         contents = f.readlines()
 except FileNotFoundError:
     contents = 0
     print("file not found", file=sys.stderr)
 list = os.listdir(DATASET_DIR) 
 number_files = len(list)
+
 if not contents:
     contents = 0
-print(contents[0])
+
 new_files = number_files - int(contents[0])
 
-with open('/Users/logancheng/Downloads/readme.txt', 'w') as f:
+with open(PREVIOUS_NUMBER_OF_FILES, 'w') as f:
     f.write(str(number_files))
     
 env_path = Path('.') / '.env'
